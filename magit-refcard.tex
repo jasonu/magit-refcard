@@ -1,0 +1,223 @@
+\documentclass[9pt]{extarticle} % extarticle: font sizes < 10
+
+\usepackage[
+pdftitle={Magit Reference Card},
+pdfauthor={Jason Underdown},
+pdfkeywords={Magit, Emacs, Git, Version Control, Reference},
+pdfsubject={Quick Reference Card for Magit}
+]{hyperref}
+\usepackage{refcards}
+\usepackage{graphicx}
+\usepackage{vmargin}
+
+% A4
+% \setpapersize[landscape]{A4}
+% \setmarginsrb%
+% {1.5cm}  % left
+% {1.0cm}  % top
+% {1.5cm}  % right
+% {1.0cm}  % bottom
+% {0ex}    % header height
+% {0ex}    % header separation
+% {0ex}    % footer height
+% {0ex}    % footser separation
+% \setlength\columnsep{7mm}
+
+% Letter
+\setpapersize[landscape]{USletter}
+\setmarginsrb%
+{1.1cm}  % left
+{1.1cm}  % top
+{0.9cm}  % right
+{0.9cm}  % bottom
+{0ex}    % header height
+{0ex}    % header separation
+{0ex}    % footer height
+{0ex}    % footser separation
+\setlength\columnsep{4mm}
+
+
+\begin{document}
+% \raggedright
+\begin{multicols}{3}
+
+  \title{Magit Reference Card}
+  \author{Jason Underdown}
+  \date{\today}
+
+  \includegraphics[scale=0.25]{magit.png}
+
+  {\small
+    \copyright\ 2020 Jason Underdown \url{<jason.underdown@gmail.com>}\\
+    This work is licensed under a Creative Commmons, \\
+    Attribution 4.0 International License \\
+    \url{https://creativecommons.org/licenses/by/4.0/}
+  }
+
+  \vspace{5ex}
+
+  \section*{Getting Help in Emacs}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{C-h k <key>}
+    & describe function bound to \texttt{<key>}  \\
+    \tt \textbf{C-h b}
+    & list the key--bindings for the current focus buffer \\
+    \tt \textbf{C-h m}
+    & describe mode \\
+    \tt \textbf{C-h l}
+    & show the keys you have pressed
+  \end{tabular}
+  \begin{tabular}{L{0.30\linewidth} L{0.70\linewidth}}
+    \tt \textbf{<prefix> C-h}
+    & show all key--bindings beginning with \texttt{<prefix>}
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Section Movement}
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{p}  & previous section \\
+    \tt \textbf{n}  & next section \\
+    \tt \textbf{P}  & previous sibling section \\
+    \tt \textbf{N}  & next sibling section \\
+    \tt \textbf{\^} & parent section
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Staging}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{s} & stage change at point \\
+    \tt \textbf{u} & unstage change at point \\
+    \tt \textbf{S} & stage all changes in worktree \\
+    \tt \textbf{U} & reset index to some commit
+  \end{tabular}
+  \begin{tabular}{L{0.45\linewidth} L{0.55\linewidth}}
+    \tt \textbf{M-x magit-unstage-all} & remove all changes \\
+    \tt \textbf{M-x magit-stage-file} & stage current file \\
+    \tt \textbf{M-x magit-unstage-file} & unstage current file
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Section Visibility}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{TAB} & toggle visibility of current section \\
+    \tt \textbf{C-TAB} & cycle visibility of section and children \\
+    \tt \textbf{M-TAB} & cycle visibility of diff--related sections \\
+    \tt \textbf{S-TAB} & cycle visibility of all sections in buffer
+  \end{tabular}
+
+  \columnbreak
+
+  \section*{Popups}
+
+  \begin{tabular}{L{0.05\linewidth} L{0.40\linewidth} L{0.05\linewidth} L{0.40\linewidth}}
+    \tt \textbf{!} & running git & \tt \textbf{m} & merging \\
+    \tt \textbf{b} & branching & \tt \textbf{M} & remoting \\
+    \tt \textbf{B} & bisecting & \tt \textbf{P} & pushing \\
+    \tt \textbf{c} & committing & \tt \textbf{o} & submoduling \\
+    \tt \textbf{d} & diffing & \tt \textbf{r} & rebasing \\
+    \tt \textbf{E} & ediff & \tt \textbf{w} & apply patches \\
+    \tt \textbf{f} & fetching & \tt \textbf{W} & format patches \\
+    \tt \textbf{F} & pulling & \tt \textbf{t} & tagging \\
+    \tt \textbf{l} & logging & \tt \textbf{z} & stashing
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Status/Diff/Log Buffer}
+
+  \begin{tabular}{L{0.10\linewidth} L{0.90\linewidth}}
+    \tt \textbf{SPC} & update commit/diff buffer or scroll up \\
+    \tt \textbf{DEL} & update commit/diff buffer or scroll down \\
+    \tt \textbf{h} & show dispatch popup \\
+    \tt \textbf{g} & refresh \\
+    \tt \textbf{G} & refresh all \\
+    \tt \textbf{q} & bury current buffer \\
+    \tt \textbf{L} & toggle margin \\
+    \tt \textbf{x} & soft reset (hard when argument is given) \\
+    \tt \textbf{y} & show references (tags and branches) \\
+    \tt \textbf{Y} & cherry
+  \end{tabular}
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{C-c C-b} & move backward in buffer's history \\
+    \tt \textbf{C-c C-f} & move forward in buffer's history
+  \end{tabular}
+  \begin{tabular}{L{0.10\linewidth} L{0.90\linewidth}}
+    \tt \textbf{e} & ediff DWIM \\
+    \tt \textbf{i} & gitignore \\
+    \tt \textbf{I} & gitignore locally
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Diff Buffer}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{RET} & visit file (or blob) at appropriate position \\
+    \tt \textbf{C-RET} & visit file at appropriate position \\
+    \tt \textbf{-} & decrease context of diff hunks \\
+    \tt \textbf{+} & increase context of diff hunks \\
+    \tt \textbf{0} & reset context of diff hunks to default height \\
+    \tt \textbf{j} & jump to diff stat $\leftrightarrow$ diff section
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Log Buffer}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{+} & show more history \\
+    \tt \textbf{C-c C-c} & select commit at point and act on it \\
+    \tt \textbf{C-c C-k} & abort selecting commit
+  \end{tabular}
+
+  \columnbreak
+
+  \section*{References Buffer}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{y} & compare references with HEAD \\
+    \tt \textbf{c} & compare references with current branch \\
+    \tt \textbf{o} & compare references with other branch
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Blaming}
+
+  \begin{tabular}{L{0.30\linewidth} L{0.70\linewidth}}
+    \tt \textbf{M-x magit-blame} & display edit history of file
+  \end{tabular}
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{RET} & show the commit at point \\
+    \tt \textbf{SPC} & update commit/diff buffer or scroll up \\
+    \tt \textbf{DEL} & update commit/diff buffer or scroll down \\
+    \tt \textbf{n} & move to the next chunk \\
+    \tt \textbf{N} & move to the next chunk (same commit) \\
+    \tt \textbf{p} & move to the previous chunk \\
+    \tt \textbf{P} & move to the previous chunk (same commit) \\\\
+    \tt \textbf{q} & turn of magit blame mode \\
+    \tt \textbf{t} & show or hide blame chunk headings
+  \end{tabular}
+
+  \vspace{5ex}
+
+  \section*{Repository Setup}
+
+  \begin{tabular}{L{0.30\linewidth} L{0.70\linewidth}}
+    \tt \textbf{M-x magit-init} & initialize a Git repository \\
+    \tt \textbf{M-x magit-clone} & clone a repository
+  \end{tabular}
+
+  \vspace{5ex}
+
+  For a complete reference see the manual at: \\
+  \url{https://magit.vc/manual/magit/}
+
+\end{multicols}
+\end{document}
