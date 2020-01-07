@@ -3,13 +3,13 @@
 \usepackage[landscape]{geometry}
 \usepackage{graphicx}
 \usepackage[pdftitle={Magit Reference Card},
-            pdfauthor={Jason Underdown},
+            pdfauthor={Jonas Bernoulli},
             pdfkeywords={Magit, Emacs, Git, Version Control, Reference},
             pdfsubject={Quick Reference Card for Magit},
             pdfcreationdate={D:20200106173000}
 ]{hyperref}
 \usepackage[none]{hyphenat}
-\usepackage{mdframed}
+%\usepackage{mdframed} % useful for framed boxes
 \usepackage{multicol}
 %\usepackage{showframe} % useful for checking paper margins
 \usepackage{titlesec}
@@ -19,9 +19,9 @@
 
 % \geometry{
 %   a4paper,
-%   total={277mm,170mm},
+%   total={277mm,160mm},
 %   left=10mm, right=10mm,
-%   top=20mm,
+%   top=25mm,
 % }
 
 % These dimensions are for letterpaper, commonly used in the United States
@@ -29,12 +29,12 @@
 
 \geometry{
   letterpaper,
-  total={259mm,176mm},
+  total={259mm,166mm},
   left=10mm, right=10mm,
-  top=20mm,
+  top=25mm,
 }
 
-% Change how the document title and section titles are displayed
+% Change how the title and section titles are displayed
 \renewcommand{\title}[1]
 {{\normalfont\sffamily\huge\bfseries #1}\vspace{1ex}}
 \titlespacing*{\section}{0pt}{1ex}{0pt}
@@ -49,17 +49,23 @@
 % Don't put page numbers at the bottom of the page
 \pagestyle{empty}
 
-% Eliminate all indentation
+% Eliminate unnecessary indentation and vertical spacing
 \parindent=0pt
 \parskip=0pt
 \topsep=0pt
 \partopsep=0pt
 
-% Create new columntypes for tabular environments
 \setlength{\tabcolsep}{0pt} % horizontal padding in tables
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Create new columntypes for tabular environments
+\newcolumntype{L}[1]
+{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcolumntype{C}[1]
+{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcolumntype{R}[1]
+{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 % Multicolumn settings
 \columnseprule=.4pt
@@ -72,14 +78,16 @@
 
   \title{Magit Reference Card}
 
-  \includegraphics[scale=0.25]{magit.png}
+  \begin{center}
+    \includegraphics[scale=0.25]{magit.png}
+  \end{center}
 
   {\small
-    \copyright\ 2020 Jason Underdown \\
-    \url{https://github.com/jasonu/magit-refcard}\\ \\
-    This work is licensed under a Creative Commmons, \\
-    Attribution 4.0 International License \\
-    \url{https://creativecommons.org/licenses/by/4.0/}
+    A Git Porcelain in Emacs \\
+    \copyright\ 2020 Jonas Bernoulli \hspace{1em} \\
+    \url{mailto:jonas@bernoul.li} \\ \\
+    This refcard is licensed under the GPLv3 License: \\
+    \href{http://gplv3.fsf.org/}{http://gplv3.fsf.org}
   }
 
   \vspace{3ex}
@@ -243,10 +251,11 @@
     \tt \textbf{M-x magit-clone} & clone a repository
   \end{tabular}
 
-  \vspace{\stretch{1}}
+  \vspace{3ex}
 
   For a complete reference see the manual at: \\
-  \url{https://magit.vc/manual/magit/}
+  \url{https://magit.vc/manual/magit/} \\ \\
+  Typeset in \LaTeX{}\ by Jason Underdown
 
 \end{multicols}
 \end{document}
