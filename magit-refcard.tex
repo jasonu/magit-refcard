@@ -1,90 +1,145 @@
-\documentclass[9pt]{extarticle} % extarticle: font sizes < 10
-
-\usepackage[
-pdftitle={Magit Reference Card},
-pdfauthor={Jason Underdown},
-pdfkeywords={Magit, Emacs, Git, Version Control, Reference},
-pdfsubject={Quick Reference Card for Magit}
-]{hyperref}
-\usepackage{refcards}
+\documentclass[9pt]{extarticle} % extarticle: font sizes < 10pt
+\usepackage{array}
+\usepackage[landscape]{geometry}
 \usepackage{graphicx}
-\usepackage{vmargin}
+\usepackage[pdftitle={Magit Reference Card},
+            pdfauthor={Jason Underdown},
+            pdfkeywords={Magit, Emacs, Git, Version Control, Reference},
+            pdfsubject={Quick Reference Card for Magit},
+            pdfcreationdate={D:20200106173000}
+]{hyperref}
+\usepackage[none]{hyphenat}
+\usepackage{mdframed}
+\usepackage{multicol}
+%\usepackage{showframe} % useful for checking paper margins
+\usepackage{titlesec}
 
-% A4
-% \setpapersize[landscape]{A4}
-% \setmarginsrb%
-% {1.5cm}  % left
-% {1.0cm}  % top
-% {1.5cm}  % right
-% {1.0cm}  % bottom
-% {0ex}    % header height
-% {0ex}    % header separation
-% {0ex}    % footer height
-% {0ex}    % footser separation
-% \setlength\columnsep{7mm}
+% Uncomment this for A4 size paper (8.3 x 11.7 inches, commonly used in Europe)
+% \geometry{
+%   a4paper,
+%   total={257mm,170mm},
+%   left=20mm,
+%   top=20mm,
+% }
 
-% Letter
-\setpapersize[landscape]{USletter}
-\setmarginsrb%
-{1.1cm}  % left
-{1.1cm}  % top
-{0.9cm}  % right
-{0.9cm}  % bottom
-{0ex}    % header height
-{0ex}    % header separation
-{0ex}    % footer height
-{0ex}    % footser separation
-\setlength\columnsep{4mm}
+% Uncomment this for letterpaper (8.5 x 11, inches commonly used in the United States)
+\geometry{
+  letterpaper,
+  total={239mm,176mm},
+  left=20mm,
+  top=20mm,
+}
 
+% Change how the document title and section titles are displayed
+\renewcommand{\title}[1]
+{{\normalfont\sffamily\huge\bfseries #1}\vspace{1ex}}
+\titlespacing*{\section}{0pt}{1ex}{0pt}
+\titleformat{\section}
+  {\normalfont\sffamily\large\bfseries}
+  {\thesection}{1em}{}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\titleformat{\subsection}
+  {\normalfont\sffamily\bfseries}
+  {\thesubsection}{1em}{}
+
+% Don't put page numbers at the bottom of the page
+\pagestyle{empty}
+
+% Eliminate all indentation
+\parindent=0pt
+\parskip=0pt
+\topsep=0pt
+\partopsep=0pt
+
+% Create new columntypes for tabular environments
+\setlength{\tabcolsep}{0pt} % horizontal padding in tables
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%%% Begin actual document
 
 \begin{document}
-% \raggedright
 \begin{multicols}{3}
 
   \title{Magit Reference Card}
-  \author{Jason Underdown}
-  \date{\today}
 
   \includegraphics[scale=0.25]{magit.png}
 
   {\small
-    \copyright\ 2020 Jason Underdown \url{<jason.underdown@gmail.com>}\\
+    \copyright\ 2020 Jason Underdown \\
+    \url{https://github.com/jasonu/magit-refcard}\\ \\
     This work is licensed under a Creative Commmons, \\
     Attribution 4.0 International License \\
     \url{https://creativecommons.org/licenses/by/4.0/}
   }
 
-  \vspace{5ex}
+  \vspace{3ex}
 
   \section*{Getting Help in Emacs}
 
-  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{L{0.40\linewidth} L{0.60\linewidth}}
+    \tt \textbf{C-h t}
+    & enter the Emacs interactive tutorial \\
+    \tt \textbf{C-h r}
+    & open the Emacs manual in Info \\
     \tt \textbf{C-h k <key>}
     & describe function bound to \texttt{<key>}  \\
     \tt \textbf{C-h b}
-    & list the key--bindings for the current focus buffer \\
+    & list the key-bindings for the current focus buffer \\
     \tt \textbf{C-h m}
     & describe mode \\
     \tt \textbf{C-h l}
-    & show the keys you have pressed
-  \end{tabular}
-  \begin{tabular}{L{0.30\linewidth} L{0.70\linewidth}}
+    & show the keys you have pressed \\
     \tt \textbf{<prefix> C-h}
-    & show all key--bindings beginning with \texttt{<prefix>}
+    & show all key-bindings beginning with \texttt{<prefix>}
   \end{tabular}
 
-  \vspace{5ex}
+  \vspace{\stretch{1}} % variable height spacing
 
+  \renewcommand{\arraystretch}{1.1}
   \section*{Section Movement}
   \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
     \tt \textbf{p}  & previous section \\
     \tt \textbf{n}  & next section \\
     \tt \textbf{P}  & previous sibling section \\
     \tt \textbf{N}  & next sibling section \\
-    \tt \textbf{\^} & parent section
+    \tt \textbf{\^{}} & parent section
   \end{tabular}
 
-  \vspace{5ex}
+  \vspace{\stretch{1}}
+
+  \section*{Section Visibility}
+
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{TAB} & toggle visibility of current section \\
+    \tt \textbf{C-TAB} & cycle visibility of section and children \\
+    \tt \textbf{M-TAB} & cycle visibility of diff-related sections \\
+    \tt \textbf{S-TAB} & cycle visibility of all sections in buffer
+  \end{tabular}
+
+  \columnbreak{}
+
+  \begin{mdframed}
+    \section*{Popups}
+
+    \begin{tabular}{L{0.1\linewidth} L{0.3\linewidth} C{0.15\linewidth}
+      L{0.1\linewidth} L{0.35\linewidth}}
+      \tt \textbf{!} & running git & & \tt \textbf{m} & merging \\
+      \tt \textbf{b} & branching & & \tt \textbf{M} & remoting \\
+      \tt \textbf{B} & bisecting & & \tt \textbf{P} & pushing \\
+      \tt \textbf{c} & committing & & \tt \textbf{o} & submoduling \\
+      \tt \textbf{d} & diffing & & \tt \textbf{r} & rebasing \\
+      \tt \textbf{E} & ediff & & \tt \textbf{w} & apply patches \\
+      \tt \textbf{f} & fetching & & \tt \textbf{W} & format patches \\
+      \tt \textbf{F} & pulling & & \tt \textbf{t} & tagging \\
+      \tt \textbf{l} & logging & & \tt \textbf{z} & stashing
+    \end{tabular}
+  \end{mdframed}
+
+  \vspace{\stretch{1}}
 
   \section*{Staging}
 
@@ -94,44 +149,17 @@ pdfsubject={Quick Reference Card for Magit}
     \tt \textbf{S} & stage all changes in worktree \\
     \tt \textbf{U} & reset index to some commit
   \end{tabular}
-  \begin{tabular}{L{0.45\linewidth} L{0.55\linewidth}}
+  \begin{tabular}{L{0.50\linewidth} L{0.50\linewidth}}
     \tt \textbf{M-x magit-unstage-all} & remove all changes \\
     \tt \textbf{M-x magit-stage-file} & stage current file \\
     \tt \textbf{M-x magit-unstage-file} & unstage current file
   \end{tabular}
 
-  \vspace{5ex}
-
-  \section*{Section Visibility}
-
-  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
-    \tt \textbf{TAB} & toggle visibility of current section \\
-    \tt \textbf{C-TAB} & cycle visibility of section and children \\
-    \tt \textbf{M-TAB} & cycle visibility of diff--related sections \\
-    \tt \textbf{S-TAB} & cycle visibility of all sections in buffer
-  \end{tabular}
-
-  \columnbreak
-
-  \section*{Popups}
-
-  \begin{tabular}{L{0.05\linewidth} L{0.40\linewidth} L{0.05\linewidth} L{0.40\linewidth}}
-    \tt \textbf{!} & running git & \tt \textbf{m} & merging \\
-    \tt \textbf{b} & branching & \tt \textbf{M} & remoting \\
-    \tt \textbf{B} & bisecting & \tt \textbf{P} & pushing \\
-    \tt \textbf{c} & committing & \tt \textbf{o} & submoduling \\
-    \tt \textbf{d} & diffing & \tt \textbf{r} & rebasing \\
-    \tt \textbf{E} & ediff & \tt \textbf{w} & apply patches \\
-    \tt \textbf{f} & fetching & \tt \textbf{W} & format patches \\
-    \tt \textbf{F} & pulling & \tt \textbf{t} & tagging \\
-    \tt \textbf{l} & logging & \tt \textbf{z} & stashing
-  \end{tabular}
-
-  \vspace{5ex}
+  \vspace{\stretch{1}}
 
   \section*{Status/Diff/Log Buffer}
 
-  \begin{tabular}{L{0.10\linewidth} L{0.90\linewidth}}
+  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
     \tt \textbf{SPC} & update commit/diff buffer or scroll up \\
     \tt \textbf{DEL} & update commit/diff buffer or scroll down \\
     \tt \textbf{h} & show dispatch popup \\
@@ -141,19 +169,15 @@ pdfsubject={Quick Reference Card for Magit}
     \tt \textbf{L} & toggle margin \\
     \tt \textbf{x} & soft reset (hard when argument is given) \\
     \tt \textbf{y} & show references (tags and branches) \\
-    \tt \textbf{Y} & cherry
-  \end{tabular}
-  \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
+    \tt \textbf{Y} & cherry \\
     \tt \textbf{C-c C-b} & move backward in buffer's history \\
-    \tt \textbf{C-c C-f} & move forward in buffer's history
-  \end{tabular}
-  \begin{tabular}{L{0.10\linewidth} L{0.90\linewidth}}
+    \tt \textbf{C-c C-f} & move forward in buffer's history \\
     \tt \textbf{e} & ediff DWIM \\
     \tt \textbf{i} & gitignore \\
     \tt \textbf{I} & gitignore locally
   \end{tabular}
 
-  \vspace{5ex}
+  \columnbreak{}
 
   \section*{Diff Buffer}
 
@@ -166,7 +190,7 @@ pdfsubject={Quick Reference Card for Magit}
     \tt \textbf{j} & jump to diff stat $\leftrightarrow$ diff section
   \end{tabular}
 
-  \vspace{5ex}
+  \vspace{\stretch{1}}
 
   \section*{Log Buffer}
 
@@ -176,7 +200,7 @@ pdfsubject={Quick Reference Card for Magit}
     \tt \textbf{C-c C-k} & abort selecting commit
   \end{tabular}
 
-  \columnbreak
+  \vspace{\stretch{1}}
 
   \section*{References Buffer}
 
@@ -186,11 +210,11 @@ pdfsubject={Quick Reference Card for Magit}
     \tt \textbf{o} & compare references with other branch
   \end{tabular}
 
-  \vspace{5ex}
+  \vspace{\stretch{1}}
 
   \section*{Blaming}
 
-  \begin{tabular}{L{0.30\linewidth} L{0.70\linewidth}}
+  \begin{tabular}{L{0.40\linewidth} L{0.60\linewidth}}
     \tt \textbf{M-x magit-blame} & display edit history of file
   \end{tabular}
   \begin{tabular}{L{0.20\linewidth} L{0.80\linewidth}}
@@ -200,21 +224,21 @@ pdfsubject={Quick Reference Card for Magit}
     \tt \textbf{n} & move to the next chunk \\
     \tt \textbf{N} & move to the next chunk (same commit) \\
     \tt \textbf{p} & move to the previous chunk \\
-    \tt \textbf{P} & move to the previous chunk (same commit) \\\\
+    \tt \textbf{P} & move to the previous chunk (same commit) \\
     \tt \textbf{q} & turn of magit blame mode \\
     \tt \textbf{t} & show or hide blame chunk headings
   \end{tabular}
 
-  \vspace{5ex}
+  \vspace{\stretch{1}}
 
   \section*{Repository Setup}
 
-  \begin{tabular}{L{0.30\linewidth} L{0.70\linewidth}}
+  \begin{tabular}{L{0.40\linewidth} L{0.60\linewidth}}
     \tt \textbf{M-x magit-init} & initialize a Git repository \\
     \tt \textbf{M-x magit-clone} & clone a repository
   \end{tabular}
 
-  \vspace{5ex}
+  \vspace{\stretch{1}}
 
   For a complete reference see the manual at: \\
   \url{https://magit.vc/manual/magit/}
