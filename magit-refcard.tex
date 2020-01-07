@@ -14,19 +14,23 @@
 %\usepackage{showframe} % useful for checking paper margins
 \usepackage{titlesec}
 
-% Uncomment this for A4 size paper (8.3 x 11.7 inches, commonly used in Europe)
+% Uncomment this for A4 size paper, commonly used in Europe
+% 8.3 x 11.7 inches (210 mm x 297 mm)
+
 % \geometry{
 %   a4paper,
-%   total={257mm,170mm},
-%   left=20mm,
+%   total={277mm,170mm},
+%   left=10mm, right=10mm,
 %   top=20mm,
 % }
 
-% Uncomment this for letterpaper (8.5 x 11, inches commonly used in the United States)
+% These dimensions are for letterpaper, commonly used in the United States
+% 8.5 x 11 inches (216 mm x 279 mm)
+
 \geometry{
   letterpaper,
-  total={239mm,176mm},
-  left=20mm,
+  total={259mm,176mm},
+  left=10mm, right=10mm,
   top=20mm,
 }
 
@@ -57,6 +61,9 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
+% Multicolumn settings
+\columnseprule=.4pt
+\columnsep=24pt
 
 %%% Begin actual document
 
@@ -122,22 +129,20 @@
 
   \columnbreak{}
 
-  \begin{mdframed}
-    \section*{Popups}
+  \section*{Popups}
 
-    \begin{tabular}{L{0.1\linewidth} L{0.3\linewidth} C{0.15\linewidth}
-      L{0.1\linewidth} L{0.35\linewidth}}
-      \tt \textbf{!} & running git & & \tt \textbf{m} & merging \\
-      \tt \textbf{b} & branching & & \tt \textbf{M} & remoting \\
-      \tt \textbf{B} & bisecting & & \tt \textbf{P} & pushing \\
-      \tt \textbf{c} & committing & & \tt \textbf{o} & submoduling \\
-      \tt \textbf{d} & diffing & & \tt \textbf{r} & rebasing \\
-      \tt \textbf{E} & ediff & & \tt \textbf{w} & apply patches \\
-      \tt \textbf{f} & fetching & & \tt \textbf{W} & format patches \\
-      \tt \textbf{F} & pulling & & \tt \textbf{t} & tagging \\
-      \tt \textbf{l} & logging & & \tt \textbf{z} & stashing
-    \end{tabular}
-  \end{mdframed}
+  \begin{tabular}{L{0.1\linewidth} L{0.3\linewidth} C{0.15\linewidth}
+    L{0.1\linewidth} L{0.35\linewidth}}
+    \tt \textbf{!} & running git & & \tt \textbf{m} & merging \\
+    \tt \textbf{b} & branching & & \tt \textbf{M} & remoting \\
+    \tt \textbf{B} & bisecting & & \tt \textbf{P} & pushing \\
+    \tt \textbf{c} & committing & & \tt \textbf{o} & submoduling \\
+    \tt \textbf{d} & diffing & & \tt \textbf{r} & rebasing \\
+    \tt \textbf{E} & ediff & & \tt \textbf{w} & apply patches \\
+    \tt \textbf{f} & fetching & & \tt \textbf{W} & format patches \\
+    \tt \textbf{F} & pulling & & \tt \textbf{t} & tagging \\
+    \tt \textbf{l} & logging & & \tt \textbf{z} & stashing
+  \end{tabular}
 
   \vspace{\stretch{1}}
 
